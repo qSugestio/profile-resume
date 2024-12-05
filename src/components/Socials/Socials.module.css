@@ -1,0 +1,78 @@
+.socials {
+  font-size: xx-large;
+  padding: 20px;
+}
+
+.socials ul {
+  display: grid;
+  grid-template-rows: auto auto;
+  row-gap: 10px;
+  grid-template-columns: 1fr 170px 1fr;
+  color: #646464;
+}
+
+.socials ul li {
+  text-align: center;
+  padding: 10px 0;
+  transition: transform .1s ease;
+}
+
+.socials ul li:last-child {
+  grid-column: 2;
+  grid-row: 2;
+  cursor: pointer;
+}
+
+.socials ul li:hover {
+  background-clip: text;
+  background-image: linear-gradient(to right, #5050fa, white);
+  -webkit-text-fill-color: transparent;
+  transform: translate(5%);
+}
+
+.socials ul li:active {
+  transform: translate(0) scale(90%);
+}
+
+.dot_color {
+  position: relative;
+  background-clip: text;
+  background-image: linear-gradient(to bottom, #5050fa, white);
+  -webkit-text-fill-color: transparent;
+  font-size: 50px;
+  width: 10px;
+  height: 10px;
+}
+
+.socials ul li:nth-child(2) {
+  pointer-events: none;
+}
+
+.pp_button {
+  border: none;
+  text-decoration: none;
+  background: none;
+  cursor: pointer;
+}
+
+@keyframes avatarBorderColor {
+  0% {
+    background: linear-gradient(0deg, #5050fa, white);
+  }
+
+  25% {
+    background: linear-gradient(90deg, #5050fa, white);
+  }
+
+  50% {
+    background: linear-gradient(180deg, #5050fa, white);
+  }
+
+  75% {
+    background: linear-gradient(270deg, #5050fa, white);
+  }
+
+  100% {
+    background: linear-gradient(0deg, #5050fa, white);
+  }
+}

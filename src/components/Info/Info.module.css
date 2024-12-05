@@ -1,0 +1,55 @@
+.info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+}
+
+.avatar {
+  position: relative;
+  width: 250px;
+  height: 250px;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+
+  border-radius: 50%;
+}
+
+.avatar::before {
+  content: '';
+  width: calc(102% - 16px);
+  height: calc(102% - 16px);
+  top: 0;
+  left: 0;
+  position: absolute;
+  border-radius: 50%;
+  border: 8px solid transparent;
+  border-top-color: #5050fa;
+  border-right-color: #5050fa;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.nickname {
+  font-size: 36px;
+  margin-top: 20px;
+  color: #C8C8C8;
+}
+
+.bio {
+  font-size: 18px;
+  color: #484848;
+}

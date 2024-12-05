@@ -1,0 +1,66 @@
+:root {
+  --modal-width: 30%;
+  --modal-height: 75%;
+}
+
+::-webkit-scrollbar {
+  scroll-margin-right: 10px;
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #272076;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3E33BD;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5347da;
+}
+
+.modal {
+  position: absolute;
+  left: calc(50% - (var(--modal-width) / 2));
+  top: calc(50% - (var(--modal-height) / 2));
+  width: var(--modal-width);
+  height: var(--modal-height);
+
+  display: flex;
+  flex-direction: column;
+  background-color: #1c1c1c;
+  border-radius: 5% 10px 10px 5%;
+  padding: 25px 30px;
+
+  overflow-y: scroll;
+  color: #6A6A6A;
+}
+
+.close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: end;
+
+  color: #2b2b2b;
+  font-size: 50px;
+  transition: all 100ms;
+}
+
+.close:hover {
+  color: red;
+  transform: scale(101%);
+}
+
+.close:active {
+  transform: scale(99%);
+}
+
+.projects {
+  width: 100%;
+  height: calc(100% - (var(--modal-height) / 7));
+}
