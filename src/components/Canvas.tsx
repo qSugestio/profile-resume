@@ -1,11 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
-import Circle from '../utils/Circle'
+import Particle from '../utils/Particle'
 
 const Canvas: React.FC = () => {
   const cavnasRef = useRef<HTMLCanvasElement>(null)
-  const ctxRef = useRef<CanvasRenderingContext2D | null>(null)
 
-  const [circle, setCircle] = useState<Circle | null>(null)
   const [width, setWidth] = useState<number>(window.innerWidth)
   const [height, setHeight] = useState<number>(window.innerHeight)
   const [mousePos, setMousePos] = useState<{ x: number; y: number }>({
@@ -13,60 +11,41 @@ const Canvas: React.FC = () => {
     y: 0,
   })
 
+  const mousePosRef = useRef<typeof mousePos>(mousePos)
+
+  useEffect(() => {
+    mousePosRef.current = mousePos
+  }, [mousePos])
+
   const handleMouseMove = (event: MouseEvent) => {
     setMousePos({ x: event.clientX, y: event.clientY })
   }
 
   useEffect(() => {
-    setCircle(new Circle(50, 50, 10, 'red'))
-  }, [])
-
-  useEffect(() => {
     const canvas = cavnasRef.current
     if (!canvas) return
-
     const ctx = canvas.getContext('2d')
     if (!ctx) return
-    ctxRef.current = ctx
 
-    let animationFrameId: number
+    const particles: Particle[] = []
+    for (let i = 0; i < 150; i++) {
+      particles.push(new Particle(cavnasRef.current!))
+    }
+    Particle.particles = particles
 
     const animate = () => {
-      animationFrameId = window.requestAnimationFrame(() => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
-        if (circle === null) return
-        circle.update(mousePos)
-        circle.draw(ctx)
-
-        // Circle.allCircles.forEach(circle => {
-        //           circle.update(
-        //             canvas,
-        //             ctx,
-        //             mousePos,
-        //             settings.massFactor,
-        //             settings.isAttraction,
-        //             settings.isAttractionToCursor,
-        //             settings.isDrawConnectingLines,
-        //             settings.isCollision,
-        //             settings.isTail,
-        //             settings.gravity
-        //           )
-        //           circle.draw(ctx, settings.isTail)
-        //         })
-
-        animate()
-      })
+      const currentMousePos = mousePosRef.current
+      ctx.clearRect(0, 0, width, height)
+      Particle.updateAll(currentMousePos)
+      window.requestAnimationFrame(animate)
     }
-
     animate()
 
-    window.addEventListener('mousemove', handleMouseMove)
-
+    canvas.addEventListener('mousemove', handleMouseMove)
     return () => {
-      window.cancelAnimationFrame(animationFrameId)
-      window.removeEventListener('mousemove', handleMouseMove)
+      canvas.removeEventListener('mousemove', handleMouseMove) // Очистка обработчика при размонтировании
     }
-  }, [mousePos])
+  }, [])
 
   useEffect(() => {
     const handleResize = () => {
@@ -83,7 +62,7 @@ const Canvas: React.FC = () => {
       ref={cavnasRef}
       width={width}
       height={height}
-      onClick={() => console.log(circle)}
+      onClick={() => console.log(Particle.particles)}
     />
   )
 }
