@@ -41,9 +41,9 @@ const Canvas: React.FC = () => {
     }
     animate()
 
-    canvas.addEventListener('mousemove', handleMouseMove)
+    document.addEventListener('mousemove', handleMouseMove)
     return () => {
-      canvas.removeEventListener('mousemove', handleMouseMove) // Очистка обработчика при размонтировании
+      document.removeEventListener('mousemove', handleMouseMove) // Очистка обработчика при размонтировании
     }
   }, [])
 
