@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
-import Particle from '../utils/Particle'
+import Particle from '../../utils/Particle'
+import './Canvas.module.css'
 
 const Canvas: React.FC = () => {
+  let offsetX: number, offsetY: number
   const cavnasRef = useRef<HTMLCanvasElement>(null)
 
   const [width, setWidth] = useState<number>(window.innerWidth)
@@ -18,6 +20,10 @@ const Canvas: React.FC = () => {
   }, [mousePos])
 
   const handleMouseMove = (event: MouseEvent) => {
+    const canvas = cavnasRef.current
+    if (!canvas) return
+    offsetX = (mousePos.x - canvas.width / 2) * 0.05
+    offsetY = (mousePos.y - canvas.width / 2) * 0.05
     setMousePos({ x: event.clientX, y: event.clientY })
   }
 
@@ -36,7 +42,7 @@ const Canvas: React.FC = () => {
     const animate = () => {
       const currentMousePos = mousePosRef.current
       ctx.clearRect(0, 0, width, height)
-      Particle.updateAll(currentMousePos)
+      Particle.updateAll(currentMousePos, offsetX, offsetY)
       window.requestAnimationFrame(animate)
     }
     animate()

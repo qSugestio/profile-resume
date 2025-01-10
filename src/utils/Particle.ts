@@ -35,14 +35,24 @@ export default class Particle {
     this._ctx = canvas.getContext('2d')!
   }
 
-  private _draw() {
+  private _draw(offsetX: number, offsetY: number) {
     this._ctx.beginPath()
-    this._ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
+    this._ctx.arc(
+      this.x + offsetX,
+      this.y + offsetY,
+      this.radius,
+      0,
+      Math.PI * 2
+    )
     this._ctx.fillStyle = this._color
     this._ctx.fill()
     this._ctx.closePath()
   }
-  public update(mousePos: { x: number; y: number }) {
+  public update(
+    mousePos: { x: number; y: number },
+    offsetX: number,
+    offsetY: number
+  ) {
     const koef = 0.3
     if (this.dx > this.speed) this.dx -= koef
     if (this.dx < -this.speed) this.dx += koef
@@ -62,7 +72,7 @@ export default class Particle {
 
     this.x += this.dx
     this.y += this.dy
-    this._draw()
+    this._draw(offsetX, offsetY)
   }
 
   // Функция для изменения угла после столкновения
@@ -95,7 +105,13 @@ export default class Particle {
     }
   }
 
-  static updateAll(mousePos: { x: number; y: number }) {
-    Particle.particles.forEach(particle => particle.update(mousePos))
+  static updateAll(
+    mousePos: { x: number; y: number },
+    offsetX: number,
+    offsetY: number
+  ) {
+    Particle.particles.forEach(particle =>
+      particle.update(mousePos, offsetX, offsetY)
+    )
   }
 }
