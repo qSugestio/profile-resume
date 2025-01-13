@@ -38,8 +38,8 @@ export default class Particle {
   private _draw(offsetX: number, offsetY: number) {
     this._ctx.beginPath()
     this._ctx.arc(
-      this.x + offsetX,
-      this.y + offsetY,
+      this.x + -offsetX,
+      this.y + -offsetY,
       this.radius,
       0,
       Math.PI * 2
@@ -48,11 +48,7 @@ export default class Particle {
     this._ctx.fill()
     this._ctx.closePath()
   }
-  public update(
-    mousePos: { x: number; y: number },
-    offsetX: number,
-    offsetY: number
-  ) {
+  public update(mousePos: { x: number; y: number }) {
     const koef = 0.3
     if (this.dx > this.speed) this.dx -= koef
     if (this.dx < -this.speed) this.dx += koef
@@ -72,6 +68,11 @@ export default class Particle {
 
     this.x += this.dx
     this.y += this.dy
+
+    // Вычисление смещения на основе положения курсора
+    const offsetX = (mousePos.x - this._canvas.width / 2) * (this.speed / 10)
+    const offsetY = (mousePos.y - this._canvas.height / 2) * (this.speed / 10)
+
     this._draw(offsetX, offsetY)
   }
 
@@ -105,13 +106,7 @@ export default class Particle {
     }
   }
 
-  static updateAll(
-    mousePos: { x: number; y: number },
-    offsetX: number,
-    offsetY: number
-  ) {
-    Particle.particles.forEach(particle =>
-      particle.update(mousePos, offsetX, offsetY)
-    )
+  static updateAll(mousePos: { x: number; y: number }) {
+    Particle.particles.forEach(particle => particle.update(mousePos))
   }
 }
