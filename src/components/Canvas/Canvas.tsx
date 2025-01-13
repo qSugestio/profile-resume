@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
-import Particle from '../utils/Particle'
+import Particle from '../../utils/Particle'
+import './Canvas.module.css'
 
 const Canvas: React.FC = () => {
   const cavnasRef = useRef<HTMLCanvasElement>(null)
@@ -17,9 +18,8 @@ const Canvas: React.FC = () => {
     mousePosRef.current = mousePos
   }, [mousePos])
 
-  const handleMouseMove = (event: MouseEvent) => {
+  const handleMouseMove = (event: MouseEvent) =>
     setMousePos({ x: event.clientX, y: event.clientY })
-  }
 
   useEffect(() => {
     const canvas = cavnasRef.current
