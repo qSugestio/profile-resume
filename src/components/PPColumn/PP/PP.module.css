@@ -1,0 +1,54 @@
+.container {
+  width: 100%;
+  min-width: 300px;
+  height: fit-content;
+  padding: 15px;
+  margin: 10px 0;
+  background-color: #0B0B0B;
+
+  border: dashed 10px white;
+  /* border-color: white;
+  border-style: dashed solid;
+  border-width: 10px; */
+
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  position: relative;
+}
+
+.container::after {
+  content: '[github]';
+  position: absolute;
+  background-color: #0b0b0b;
+  color: white;
+  right: 10px;
+  bottom: -15px;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 25px;
+
+  background: linear-gradient(90deg, white, #5050fa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  animation: gradient-animation 1s linear infinite
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: -100% 0%;
+  }
+
+  100% {
+    background-position: 100% 0%;
+  }
+
+}
+
+.description {
+  margin-top: 10px;
+  color: #646464;
+  font-size: 20px;
+}

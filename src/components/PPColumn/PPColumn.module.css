@@ -1,14 +1,50 @@
 .pp_container {
   width: fit-content;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  max-width: 500px;
+
+  overflow-y: scroll;
+  padding-right: 20px;
 }
 
+/* Стили для кастомного скролла */
+.pp_container::-webkit-scrollbar {
+  width: 12px;
+  border: white dashed 10px;
+  /* Ширина скролл-бара */
+}
+
+.pp_container::-webkit-scrollbar-track {
+  /* background: #f1f1f1; */
+  /* Цвет фона скролл-пути */
+  /* border-radius: 10px; */
+  /* Закругление углов скролл-пути */
+}
+
+.pp_container::-webkit-scrollbar-thumb {
+  background: #5050fa;
+  /* Цвет ползунка */
+  /* Закругление углов ползунка */
+}
+
+.pp_container::-webkit-scrollbar-thumb:hover {
+  /* background: #555; */
+  background-color: #7171fe;
+  /* Цвет ползунка при наведении */
+}
+
+
 .pp_container h5 {
+  font-size: 30px;
   font-weight: 500;
   background: linear-gradient(90deg, #D4FD70, white);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: gradient-animation 1s linear infinite;
+  margin-bottom: 20px;
 }
 
 @keyframes gradient-animation {
