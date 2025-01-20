@@ -5,6 +5,8 @@ import styles from './Skills.module.css'
 
 const Skills = () => {
   const [name, setName] = useState('')
+  const [isActiveVisibleBottomBlock, setIsActiveVisibleBottomBlock] =
+    useState(false)
 
   const out = useRef<HTMLDivElement>(null)
   const bottom_block = useRef<HTMLDivElement>(null)
@@ -25,19 +27,22 @@ const Skills = () => {
   }, [])
 
   useEffect(() => {
-    if (out.current !== null) out.current.innerHTML = name
+    if (out.current) out.current.innerHTML = name
   }, [name])
 
   useEffect(() => {
-    setTimeout(() => {
-      if (bottom_block.current) bottom_block.current.style.opacity = '1'
-    }, 1000)
+    setTimeout(() => setIsActiveVisibleBottomBlock(true), 1000)
   }, [])
 
   return (
     <div className={styles.skills_container}>
       <div ref={out} className={styles.top_block}></div>
-      <div ref={bottom_block} className={styles.bottom_block}>
+      <div
+        ref={bottom_block}
+        className={`${styles.bottom_block} ${
+          isActiveVisibleBottomBlock && styles.active
+        }`}
+      >
         <div>
           <div>socials:</div>
           <div>

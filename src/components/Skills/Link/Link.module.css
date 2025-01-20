@@ -3,9 +3,34 @@
 
   background: linear-gradient(#646464, #646464 50%, #5050fa 50%, #5050fa);
   background-size: 100% 200%;
-  transition: background .3s;
+  transition: background .3s, transform .1s;
+  display: inline-block;
 }
 
 .link:hover {
   background-position: 100% 100%;
+  animation: shake-animation .5s infinite;
+}
+
+
+@keyframes shake-animation {
+  0% {
+    transform: translate(1px, 0);
+  }
+
+  25% {
+    transform: translate(-1px, 0);
+  }
+
+  50% {
+    transform: translate(1px, 0);
+  }
+
+  75% {
+    transform: translate(-1px, 0);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
 }
