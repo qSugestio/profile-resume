@@ -1,0 +1,23 @@
+.pp_container {
+  width: fit-content;
+}
+
+.pp_container h5 {
+  font-weight: 500;
+  background: linear-gradient(90deg, #D4FD70, white);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-animation 1s linear infinite;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: -100% 0%;
+  }
+
+  100% {
+    background-position: 100% 0%;
+  }
+
+}

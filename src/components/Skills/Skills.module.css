@@ -1,8 +1,7 @@
 .skills_container {
+  width: fit-content;
   height: 90vh;
   color: #646464;
-  margin: 50px;
-  font-size: 25px;
 
   display: flex;
   flex-direction: column;

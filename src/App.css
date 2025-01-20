@@ -1,0 +1,7 @@
+.container {
+  height: 90vh;
+  display: flex;
+  justify-content: space-between;
+  padding: 50px;
+  font-size: 25px;
+}
