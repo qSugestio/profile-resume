@@ -7,23 +7,12 @@
   background-color: #0B0B0B;
 
   border: dashed 10px white;
-  /* border-color: white;
-  border-style: dashed solid;
-  border-width: 10px; */
 
   word-wrap: break-word;
   overflow-wrap: break-word;
   position: relative;
 }
 
-.container::after {
-  content: '[github]';
-  position: absolute;
-  background-color: #0b0b0b;
-  color: white;
-  right: 10px;
-  bottom: -15px;
-}
 
 .title {
   font-weight: 500;
@@ -51,4 +40,13 @@
   margin-top: 10px;
   color: #646464;
   font-size: 20px;
+}
+
+.github_link {
+  position: absolute;
+  bottom: -15px;
+  right: 10px;
+
+  background-color: #0b0b0b;
+  color: white;
 }
