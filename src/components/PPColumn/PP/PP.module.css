@@ -49,4 +49,11 @@
 
   background-color: #0b0b0b;
   color: white;
+
+  transition: linear .05s;
+}
+
+.github_link:hover {
+  color: #5050fa;
+  transform: scale(101%);
 }

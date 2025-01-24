@@ -48,7 +48,7 @@ const PP = ({ repo }: props) => {
       }
     }
 
-    // getAndSetDescription()
+    getAndSetDescription()
   }, [])
 
   return (
