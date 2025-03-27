@@ -1,6 +1,6 @@
 # Profile
 
-Сайт профиль [(Ссылка на сайт с первым стилем)](https://profile-resume-rose.vercel.app/)
+Сайт профиль [(Ссылка на сайт с первым стилем)](https://profile-resume-rose.vercel.app/). [(Ссылка на сайт со вторым стилем)](https://sugestio.ru/)
 
 ## О проекте
 
