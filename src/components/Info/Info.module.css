@@ -51,5 +51,28 @@
 
 .bio {
   font-size: 18px;
-  color: #484848;
+  color: #555555;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+.bio ul {
+  display: flex;
+  flex-direction: row;
+}
+
+.bio ul li {
+  margin-right: 10px;
+  color: #5050fa
+}
+
+.bio ul li:last-child {
+  margin-right: 0;
+}
+
+.bio ul li::after {
+  content: ','
 }
