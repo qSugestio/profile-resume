@@ -13,15 +13,34 @@ const Skills = () => {
 
   const text = `
   sugestio<br/>
-  frontend - developer<br/>
   <br/>
-  <span class=${styles.blue}>+ typescript</span><br/>
-  + react<br/>
+  Данила Князев<br/>
+  fullstack-developer<br/>
+  <br/>
+  frontend: <br/>
+  <span class=${styles.blue}>
+  + js<br/>
+  + ts<br/>
+  + react.js<br/>
+  + react router<br/>
+  + redux<br/>
   + next.js<br/>
-  + ...`
+  + axios<br/>
+  </span>
+  <br/>
+  backend: <br/>
+  <span class=${styles.blue}>
+  + node.js<br/>
+  + nest.js<br/>
+  + express.js<br/>
+  + jwt<br/>
+  + postgresql<br/>
+  + rest api<br/>
+  + socket.io
+  </span>`
 
   useEffect(() => {
-    const cleanup1 = gradualOutput(setName, text, 50)
+    const cleanup1 = gradualOutput(setName, text, 30)
 
     return () => cleanup1()
   }, [])

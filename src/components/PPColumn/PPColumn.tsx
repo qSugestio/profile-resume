@@ -18,12 +18,13 @@ const PPColumn = () => {
     const getAndSetRepos = async () => {
       try {
         const repos = await getRepositories()
+        if (typeof repos === 'object') throw new Error('API лимит исчерпан')
         setRepos(repos)
       } catch (error) {
         console.error('Error fetching repos:', error)
         setRepos([
           {
-            name: 'Репозитории не найдены',
+            name: 'Репозитории не найдены или недоступны',
             description: '¯\\_(ツ)_/¯',
             html_url: '',
             language: '',
