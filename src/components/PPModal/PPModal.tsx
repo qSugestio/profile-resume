@@ -12,17 +12,7 @@ const getRepositories = async (): Promise<Repo[]> => {
 const PPModal = ({ onClose }: { onClose: () => void }) => {
   const [repos, setRepos] = useState<Repo[]>([])
   const [loading, setLoading] = useState(true)
-  // const getReadme = async (repoName: string) => {
-  //   try {
-  //     const readme = await fetch(
-  //       `https://api.github.com/repos/qSugestio/${repoName}/readme`
-  //     )
-  //     const data = await readme.json()
-  //     return atob(data.content)
-  //   } catch (error) {
-  //     console.error('Failed to fetch readme:', error)
-  //   }
-  // }
+
   useEffect(() => {
     const getAndSetRepos = async () => {
       try {
