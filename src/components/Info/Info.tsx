@@ -15,20 +15,19 @@ const Info = () => {
             Frontend:
             <li>JS</li>
             <li>TS</li>
-            <li>React.js</li>
+            <li>React, Next.js</li>
             <li>React router</li>
           </ul>
           <ul>
-            <li>Redux</li>
-            <li>Next.js</li>
+            <li>Redux, Redux Toolkit</li>
             <li>axios</li>
           </ul>
           <br />
           <ul>
             Backend:
             <li>Nest.js</li>
-            <li>Node.js</li>
-            <li>Express.js</li>
+            <li>Node</li>
+            <li>Express</li>
             <li>JWT</li>
           </ul>
           <ul>
