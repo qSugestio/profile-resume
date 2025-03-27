@@ -1,49 +1,54 @@
 import { useEffect, useState } from 'react'
-import PetProject from './PetProject/PetProject'
+import Repo from './IRepo'
 import styles from './PPModal.module.css'
+import PetProject from './PetProject/PetProject'
+
+const getRepositories = async (): Promise<Repo[]> => {
+  const response = await fetch('https://api.github.com/users/qSugestio/repos')
+  const repos = await response.json()
+  return repos
+}
 
 const PPModal = ({ onClose }: { onClose: () => void }) => {
-  const [projects, setProjects] = useState([])
+  const [repos, setRepos] = useState<Repo[]>([])
   const [loading, setLoading] = useState(true)
-
+  // const getReadme = async (repoName: string) => {
+  //   try {
+  //     const readme = await fetch(
+  //       `https://api.github.com/repos/qSugestio/${repoName}/readme`
+  //     )
+  //     const data = await readme.json()
+  //     return atob(data.content)
+  //   } catch (error) {
+  //     console.error('Failed to fetch readme:', error)
+  //   }
+  // }
   useEffect(() => {
-    // fetchRepos()
+    const getAndSetRepos = async () => {
+      try {
+        const repositories = await getRepositories()
+        setRepos(repositories)
+      } catch (error) {
+        console.error('Error fetching repos:', error)
+        setRepos([
+          {
+            name: 'Репозитории не найдены',
+            description: '¯\\_(ツ)_/¯',
+            html_url: '',
+            language: '',
+            url: '',
+          },
+        ])
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    getAndSetRepos()
   }, [])
 
-  const fetchRepos = async () => {
-    try {
-      const repos = await fetch('https://api.github.com/users/qSugestio/repos')
-      if (!repos.ok) throw new Error('Failed to fetch repos')
-
-      const data = await repos.json()
-
-      // GET README
-      // data.map(async (repo: any) => {
-      //   const desc = (await getReadme(repo.name)) as string
-      //   repo.description = decodeURIComponent(escape(desc))
-      // })
-
-      setProjects(data)
-    } catch (error) {
-      console.error('Failed to fetch repos:', error)
-    } finally {
-      setLoading(false)
-    }
-  }
-  const getReadme = async (repoName: string) => {
-    try {
-      const readme = await fetch(
-        `https://api.github.com/repos/qSugestio/${repoName}/readme`
-      )
-      const data = await readme.json()
-      return atob(data.content)
-    } catch (error) {
-      console.error('Failed to fetch readme:', error)
-    }
-  }
-
   return (
-    <div className={styles.modal} onClick={() => console.log(projects)}>
+    <div className={styles.modal}>
       <button className={styles.close} onClick={onClose}>
         ⨉
       </button>
@@ -51,25 +56,7 @@ const PPModal = ({ onClose }: { onClose: () => void }) => {
         {loading ? (
           <p>Loading...</p>
         ) : (
-          projects.map(
-            (project: {
-              name: string
-              description: string
-              svn_url: string
-            }) => (
-              <PetProject
-                key={project.name}
-                title={project.name}
-                description={
-                  project.description
-                    ? project.description.slice(0, 50)
-                    : 'Description is none'
-                }
-                githubLink={project.svn_url}
-                websiteLink='/'
-              />
-            )
-          )
+          repos.map((repo: Repo) => <PetProject repo={repo} />)
         )}
       </div>
     </div>
