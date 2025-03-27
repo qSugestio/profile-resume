@@ -21,18 +21,19 @@ const Skills = () => {
   <span class=${styles.blue}>
   + js<br/>
   + ts<br/>
-  + react.js<br/>
+  + react<br/>
   + react router<br/>
   + redux<br/>
   + next.js<br/>
   + axios<br/>
+  + sass<br/>
   </span>
   <br/>
   backend: <br/>
   <span class=${styles.blue}>
-  + node.js<br/>
-  + nest.js<br/>
-  + express.js<br/>
+  + node<br/>
+  + nestjs<br/>
+  + express<br/>
   + jwt<br/>
   + postgresql<br/>
   + rest api<br/>
